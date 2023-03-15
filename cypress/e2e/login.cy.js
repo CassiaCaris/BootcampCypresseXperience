@@ -71,7 +71,7 @@ describe('login', () => {
               .find('.alert-error').should('have.text', user.error)
         })
         
-        it('não deve ter senha inferior a 6 digitos', () => {
+        it('não deve ter senha inferior a 6 caracteres', () => {
             const user = {
                 email: 'cassia@gmail.com',
                 password: '123',
