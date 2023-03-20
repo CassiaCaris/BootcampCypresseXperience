@@ -31,6 +31,22 @@ $ npm install
 ```
 **Obs.**: Após baixar as dependencias do projeto e se encontrar com a aplicação da Aplicação Shave-XP executando localmente <br>
 
+#### Executando o projeto (modo headless)
+**Passo 1** - No mesmo terminal que baixou as dependencias de Test <br>
+```
+$ npx cypress run
+```
+
+**Passo 2** - Inicializará a execução no twrminal <br>
+![image](https://user-images.githubusercontent.com/32333336/226435265-512c2d47-b0eb-4c8a-95bd-557d9d300b3d.png)
+
+**Passo 3** - Ao finalziar a execução mostrará o resultado final <br>
+![image](https://user-images.githubusercontent.com/32333336/226435414-9a156825-f718-4cb9-b256-3233646fdc32.png)
+
+**3.1.** - Tem a opção de ver os videos da execução na pasta videos <br>
+![image](https://user-images.githubusercontent.com/32333336/226435556-d65e295c-50f3-4e26-bd35-08be5e447039.png)
+
+
 #### Executando o projeto (modo visual)
 **Passo 1** - No mesmo terminal que baixou as dependencias de Test <br>
 ```
