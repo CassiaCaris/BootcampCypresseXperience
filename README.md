@@ -1,4 +1,4 @@
-# Automação Shavers <br><br>
+# Automação Shavers
 
 **Bootcamp QAx - QAxperience** <br>
 **Projeto de automação em Cypress do Zero ao Avançado**<br>
@@ -12,7 +12,7 @@ Nodejs (Versão 18.12.1)<br>
 cypress (verão 12.7.0)<br>
 Java (versão 9)
 
-### Em desenvolvimento
+### **Em desenvolvimento**
 
 **Autora:** Cassia Caris<br>
 **Curso:** QA eXperience Bootcamp [Cypress eXperience (Lançamento)]
