@@ -1,5 +1,5 @@
-# Bootcamp QAx - QA eXperience <br>
-## Projeto de automação em [Cypress eXperience (do Zero ao Profissional)]
+# Bootcamp QAx - QAxperience <br>
+## Projeto de automação em Cypress do Zero ao Avançado
 
 Nesse projeto será realziado a criação da automação em cypress.<br>
 Usando aplicações locais de um site de Barbearia.

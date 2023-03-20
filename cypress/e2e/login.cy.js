@@ -1,3 +1,6 @@
+import loginPage from '../support/pages/login'
+import shaversPage from '../support/pages/shavers'
+
 describe('login', () => {
 
     context('quando submeto o formulário', () => {
@@ -9,15 +12,8 @@ describe('login', () => {
                 password: 'pwd123'
             }
     
-            cy.visit('http://localhost:3000/')
-
-            cy.get('input[placeholder$=email]').type(user.email)
-            cy.get('input[placeholder*=senha]').type(user.password)
-
-            cy.get('button[type=submit]').click()
-
-            cy.get('.logged-user div a').should('be.visible')
-              .should('have.text', 'Olá, ' + user.name)
+            loginPage.submit(user.email,user.password)
+            shaversPage.header.userShouldLoggedIn(user.name)
         })
 
         it('não deve logar com senha incorreta', () => {
@@ -27,14 +23,9 @@ describe('login', () => {
                 mensage: 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
             }
     
-            cy.visit('http://localhost:3000/')
-
-            cy.get('input[placeholder$=email]').type(user.email)
-            cy.get('input[placeholder*=senha]').type(user.password)
-
-            cy.get('button[type=submit]').click()
-            cy.get('.notice-container').should('be.visible')
-              .find('.error p').should('have.text', user.mensage)
+            loginPage.submit(user.email,user.password)
+            loginPage.noticeShould(user.mensage)
+            
         })
         
         it('não deve logar com email não cadastrado', () => {
@@ -44,64 +35,64 @@ describe('login', () => {
                 mensage: 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
             }
     
-            cy.visit('http://localhost:3000/')
-
-            cy.get('input[placeholder$=email]').type(user.email)
-            cy.get('input[placeholder*=senha]').type(user.password)
-
-            cy.get('button[type=submit]').click()
-            cy.get('.notice-container').should('be.visible')
-              .find('.error p').should('have.text', user.mensage)
-        })
-
-        it('não deve logar email inválido ', () => {
-            const user = {
-                email: 'gmail.com',
-                password: 'pwd123',
-                error: 'Informe um email válido'
-            }
-    
-            cy.visit('http://localhost:3000/')
-
-            cy.get('input[placeholder$=email]').type(user.email)
-            cy.get('input[placeholder*=senha]').type(user.password)
-
-            cy.get('button[type=submit]').click()
-            cy.get('.alert').should('be.visible')
-              .find('.alert-error').should('have.text', user.error)
-        })
-        
-        it('não deve ter senha inferior a 6 caracteres', () => {
-            const user = {
-                email: 'cassia@gmail.com',
-                password: '123',
-                error: 'Pelo menos 6 caracteres'
-            }
-    
-            cy.visit('http://localhost:3000/')
-
-            cy.get('input[placeholder$=email]').type(user.email)
-            cy.get('input[placeholder*=senha]').type(user.password)
-
-            cy.get('button[type=submit]').click()
-            cy.get('.alert').should('be.visible')
-              .find('.alert-error').should('have.text', user.error)
+            loginPage.submit(user.email,user.password)
+            loginPage.noticeShould(user.mensage)
         })
 
         it('não deve logar com credenciais em branco', () => {
-            const user = {
-                emailErro: 'E-mail é obrigatório',
-                passwrodErro: 'Senha é obrigatória'
-            }
-    
-            cy.visit('http://localhost:3000/')
+                        
+            loginPage.submit()
+            loginPage.alertShould()
+           
+        })
+      
+        context('senha muito curta', () => {
 
-            cy.get('button[type=submit]').click()
+            const passwords = [
+                '1',
+                '12',
+                '123',
+                '1234',
+                '12345'
+            ]
+            
+            passwords.forEach((p)=> {
 
-            cy.get('.alert').should('be.visible')
-              .find('.alert-error').should('have.text', user.emailErro + user.passwrodErro)
+                it(`Não deve logar com senha: ${p}`, ()=> {
+                    const user = {
+                        email: 'cassia@gmail.com'
+                    }
+            
+                    loginPage.submit(user.email,p)
+                    loginPage.alertShouldbe('Pelo menos 6 caracteres')
+                    
+                })
+            })
         })
 
-    })
+        context('email no formato incorreto', () => {
+
+            const emails = [
+                '@gmail.com',
+                'teste&gmail.com',
+                'teste@test',
+                '@',
+                'Test@',
+                '121212',
+                '@#@!%$&@a',
+                'xpto123',
+                'test'                
+            ]
+
+            emails.forEach((e)=> {
+                it(`não deve logar email no formato: ${e}`, () => {
+            
+                    loginPage.submit(e,'pwd123')
+                    loginPage.alertShouldbe('Informe um email válido')
+          
+                })
+            })
+        })    
+    })    
 
 })
