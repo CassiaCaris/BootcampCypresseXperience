@@ -1,0 +1,40 @@
+
+{
+    "success": {
+        "name": "Cassia",
+        "email": "cassia@yahoo.com",
+        "password": "pwd123"
+    },
+
+    "invalid": {
+        "email": "cassia@yahoo.com",
+        "password": "123456",
+        "mensage": "Ocorreu um erro ao fazer login, verifique suas credenciais."
+    },
+
+    "email": {
+        "email": "cassia@gmail.com",
+        "password": "pwd123",
+        "mensage": "Ocorreu um erro ao fazer login, verifique suas credenciais."
+    },
+
+    "shortpass": [
+        "1",
+        "12",
+        "123",
+        "1234",
+        "12345"
+    ],
+
+    "invemails": [
+        "@gmail.com",
+        "teste&gmail.com",
+        "teste@test",
+        "@",
+        "Test@",
+        "121212",
+        "@#@!%$&@a",
+        "xpto123",
+        "test"                
+    ]
+}
