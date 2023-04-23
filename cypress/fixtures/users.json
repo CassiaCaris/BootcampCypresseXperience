@@ -3,7 +3,8 @@
     "success": {
         "name": "Cassia",
         "email": "cassia@yahoo.com",
-        "password": "pwd123"
+        "password": "pwd123",
+        "is_shaver": false
     },
 
     "invalid": {
