@@ -9,7 +9,7 @@ const app = express()
 
 app.use(express.json())
 
-const { deleteuser, insertUser } = require('./db')
+const { deleteuser, insertUser, findToken } = require('./db')
 
 const userSchema = Joi.object({
     name: Joi.string().required(),
@@ -20,6 +20,15 @@ const userSchema = Joi.object({
 
 app.get('/welcome', function (req, res) {
     res.json({ 'message': 'Olá QAx' })
+})
+
+app.get('/token/:email', async function (req, res) {
+    const { email } = req.params
+    const token = await findToken(email)
+    if(!token) {
+        return res.status(404).end()
+    }
+    res.status(200).json(token)
 })
 
 app.delete('/user/:email', async function (req, res) {
@@ -52,15 +61,15 @@ app.post('/user', validator.body(userSchema), async function (req, res) {
 
 app.use((err, req, res, next) => {
     if (err && err.error && err.error.isJoi) {
-      // we had a joi error, let's return a custom 400 json response
-      res.status(400).json({
-        type: err.type, // will be "query" here, but could be "headers", "body", or "params"
-        message: err.error.toString()
-      });
+        // we had a joi error, let's return a custom 400 json response
+        res.status(400).json({
+            type: err.type, // will be "query" here, but could be "headers", "body", or "params"
+            message: err.error.toString()
+        });
     } else {
-      // pass on to another error handler
-      next(err);
+        // pass on to another error handler
+        next(err);
     }
-  });
+});
 
 app.listen(4000)
