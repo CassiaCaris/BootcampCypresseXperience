@@ -32,6 +32,13 @@ $ npm install
 **Obs.**: Após baixar as dependencias do projeto e se encontrar com a aplicação da Aplicação Shave-XP executando localmente <br>
 
 #### Executando o projeto 
+
+#### Executando o nodemon
+**Obs.: Em um terminal realziar a execução do Comando para acompanhar a execução da API Helper
+```
+$ npx nodemon api/app.js
+```
+
 ##### Via headless
 **Passo 1** - No mesmo terminal que baixou as dependencias de Test <br>
 ```
