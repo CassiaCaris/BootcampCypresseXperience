@@ -34,7 +34,7 @@ $ npm install
 #### Executando o projeto 
 
 #### Executando o nodemon
-**Obs.: Em um terminal realziar a execução do Comando para acompanhar a execução da API Helper
+**Obs.**: Em um terminal realziar a execução do Comando para acompanhar a execução da API Helper
 ```
 $ npx nodemon api/app.js
 ```
